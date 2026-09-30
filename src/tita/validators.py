@@ -11,5 +11,6 @@ def validate_order(order):
 def validate_initial_conditions(initial_conditions, order):
     if len(initial_conditions) != order:
         raise InvalidInputError(
-            f"Expected {order} initial conditions, got {len(initial_conditions)}", param = "initial_conditions"
+            f"Expected {order} initial conditions, got {len(initial_conditions)}",
+            param="initial_conditions",
         )
