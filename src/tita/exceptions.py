@@ -26,3 +26,11 @@ class SingularityError(ODEError):
     def __init__(self, message, point):
         super().__init__(message)
         self.point = point
+
+
+class InvalidInputError(ODEError):
+    """Raises when a input parameter is invalid."""
+
+    def __init__(self, message, param=None):
+        super().__init__(message)
+        self.param = param
