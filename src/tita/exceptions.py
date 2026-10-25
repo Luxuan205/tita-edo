@@ -11,15 +11,6 @@ class MethodNotApplicableError(ODEError):
         self.reason = reason
 
 
-class ConvergenceError(ODEError):
-    """Raised when a numeric method fails to converge."""
-
-    def __init__(self, message, iterations=None, tolerance=None):
-        super().__init__(message)
-        self.iterations = iterations
-        self.tolerance = tolerance
-
-
 class SingularityError(ODEError):
     """Raised when a singularity is found"""
 
