@@ -111,6 +111,33 @@ def is_bernoulli(f: Expr, variable: Symbol, function: Function) -> bool:
     return exponents <= {1} | non_linear_exponents
 
 
+def is_exact(m: Expr, n: Expr, variable: Symbol, function: Function) -> bool:
+    """Check whether M(x, y) + N(x, y) * dy/dx = 0 is exact.
+
+    Parameters
+    ----------
+    m : sympy.Expr
+        `M(x, y)`, from writing the ODE as
+        `M(x, y) + N(x, y) * dy/dx = 0`.
+    n : sympy.Expr
+        `N(x, y)`, from the same form.
+    variable : sympy.Symbol
+        The independent variable (e.g. `x`).
+    function : sympy.Function
+        The unknown function (e.g. `Function("y")`, not yet applied
+        to `variable`).
+
+    Returns
+    -------
+    bool
+        True if d(M)/dy equals d(N)/dx.
+    """
+    m_substituted, dummy = substitute_function(m, variable, function)
+    n_substituted, _ = substitute_function(n, variable, function)
+    difference = m_substituted.diff(dummy) - n_substituted.diff(variable)
+    return simplify(difference) == 0
+
+
 def classify(f: Expr, variable: Symbol, function: Function) -> list[str]:
     """Return the names of every first-order ODE type that f(x, y) matches.
 
