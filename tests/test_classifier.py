@@ -1,8 +1,9 @@
-from sympy import Function, symbols
+from sympy import Function, Integer, symbols
 
 from tita.classifier import (
     classify,
     is_bernoulli,
+    is_exact,
     is_homogeneous,
     is_linear,
     is_separable,
@@ -42,6 +43,18 @@ def test_is_bernoulli_true_for_power_term():
 
 def test_is_bernoulli_false_with_extra_constant_term():
     assert is_bernoulli(y(x) ** 2 + x, x, y) is False
+
+
+def test_is_exact_true_for_matching_partials():
+    m = 2 * x * y(x) + 3
+    n = x**2 - 1
+    assert is_exact(m, n, x, y) is True
+
+
+def test_is_exact_false_for_mismatched_partials():
+    m = -x - y(x)
+    n = Integer(1)
+    assert is_exact(m, n, x, y) is False
 
 
 def test_classify_returns_multiple_matching_types():
