@@ -29,6 +29,20 @@ def test_classify_ode_detects_exact_type():
 
 
 def test_classify_ode_rejects_higher_order_equation():
-    ode = Eq(y(x).diff(x, 2) + y(x), 0)
+    ode = Eq(y(x).diff(x, 3), 0)
     with pytest.raises(MethodNotApplicableError):
         classify_ode(ode, x, y)
+
+
+def test_classify_ode_classifies_second_order_equation():
+    ode = Eq(y(x).diff(x, 2) + y(x), 0)
+    types = classify_ode(ode, x, y)
+    assert set(types) == {"linear", "constant_coefficients", "zero_forcing_term"}
+
+
+def test_classify_ode_rejects_partial_differential_equation():
+    t = symbols("t")
+    u = Function("u")
+    pde = Eq(u(x, t).diff(x) + u(x, t).diff(t), 0)
+    with pytest.raises(MethodNotApplicableError):
+        classify_ode(pde, x, u)
