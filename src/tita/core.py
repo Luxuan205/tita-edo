@@ -89,18 +89,10 @@ def solve_ode(ode: Eq, variable: Symbol, function: Function) -> Eq:
     sympy.Eq
         The general solution found.
     """
-    if not is_ordinary(ode):
-        raise MethodNotApplicableError(
-            "This project only solves ordinary differential equations",
-            method="solve_ode",
-            reason="ode involves more than one independent variable (a PDE)",
-        )
-
+    types = classify_ode(ode, variable, function)
     order = ode_order(ode, function(variable))
-    validate_order(order)
 
     if order == 2:
-        types = classify_second_order(ode, variable, function)
         if "constant_coefficients" in types and "zero_forcing_term" in types:
             return solve_constant_coeff_homogeneous(ode, variable, function)
         raise MethodNotApplicableError(
@@ -109,16 +101,7 @@ def solve_ode(ode: Eq, variable: Symbol, function: Function) -> Eq:
             reason=f"matched types: {types}",
         )
 
-    if order != 1:
-        raise MethodNotApplicableError(
-            "This project only solves first- and second-order ODEs",
-            method="solve_ode",
-            reason=f"detected order {order}",
-        )
-
     f = isolate_derivative(ode, variable, function)
-    types = classify(f, variable, function)
-
     solvers = {
         "linear": lambda: solve_linear_first_order(f, variable, function),
         "bernoulli": lambda: solve_bernoulli(f, variable, function),
@@ -129,8 +112,8 @@ def solve_ode(ode: Eq, variable: Symbol, function: Function) -> Eq:
         if method in types:
             return solvers[method]()
 
-    m, n = extract_m_n(ode, variable, function)
-    if is_exact(m, n, variable, function):
+    if "exact" in types:
+        m, n = extract_m_n(ode, variable, function)
         return solve_exact(m, n, variable, function)
 
     raise MethodNotApplicableError(
