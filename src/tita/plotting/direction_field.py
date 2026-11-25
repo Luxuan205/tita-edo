@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from sympy import Expr, Function, Symbol, lambdify
 
@@ -14,6 +15,7 @@ def plot_direction_field(
     x_range: tuple[float, float],
     y_range: tuple[float, float],
     density: int = 20,
+    ax: Axes = None,
 ) -> Figure:
     """Plot the direction field of dy/dx = f(x, y).
 
@@ -32,6 +34,8 @@ def plot_direction_field(
         The (min, max) range to plot along `function`.
     density : int
         Number of grid points along each axis.
+    ax : matplotlib.axes.Axes, optional
+        Axes to draw on. A new figure and axes are created if omitted.
 
     Returns
     -------
@@ -58,8 +62,14 @@ def plot_direction_field(
     norm = np.hypot(dx, dy)
     dx, dy = dx / norm, dy / norm
 
-    figure, axes = plt.subplots()
-    axes.quiver(x_grid, y_grid, dx, dy, angles="xy", pivot="mid")
-    axes.set_xlabel(str(variable))
-    axes.set_ylabel(str(function))
+    if ax is None:
+        figure, ax = plt.subplots()
+    else:
+        figure = ax.figure
+
+    ax.quiver(x_grid, y_grid, dx, dy, angles="xy", pivot="mid")
+    ax.set_xlim(x_range)
+    ax.set_ylim(y_range)
+    ax.set_xlabel(str(variable))
+    ax.set_ylabel(str(function))
     return figure
