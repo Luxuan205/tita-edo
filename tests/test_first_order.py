@@ -125,8 +125,29 @@ def test_solve_by_substitution_rejects_unsolvable_substitution():
         solve_by_substitution(x, x, y, substitution, v)
 
 
+def test_solve_by_substitution_rejects_substitution_that_drops_new_function():
+    v = Function("v")
+    substitution = Eq(v(x) - v(x), y(x) - x)
+    with pytest.raises(MethodNotApplicableError):
+        solve_by_substitution(x, x, y, substitution, v)
+
+
 def test_orthogonal_trajectories_of_concentric_circles_are_lines():
     c = symbols("c")
     family = Eq(x**2 + y(x) ** 2, c)
     f = orthogonal_trajectories(family, c, x, y)
     assert f == y(x) / x
+
+
+def test_orthogonal_trajectories_rejects_family_unsolvable_for_constant():
+    c = symbols("c")
+    family = Eq(x**2 + y(x) ** 2, c**2)
+    with pytest.raises(MethodNotApplicableError):
+        orthogonal_trajectories(family, c, x, y)
+
+
+def test_orthogonal_trajectories_rejects_family_without_the_function():
+    c = symbols("c")
+    family = Eq(x, c)
+    with pytest.raises(MethodNotApplicableError):
+        orthogonal_trajectories(family, c, x, y)

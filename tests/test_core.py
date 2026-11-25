@@ -1,5 +1,5 @@
 import pytest
-from sympy import Eq, Function, symbols
+from sympy import Eq, Function, solve, symbols
 
 from tita.classifier import verify_solution
 from tita.core import classify_ode, solve_ode
@@ -60,6 +60,15 @@ def test_solve_ode_solves_exact_equation():
     general_solution = solve_ode(ode, x, y)
     explicit_ode = Eq(y(x).diff(x), -(2 * x * y(x) + 3) / (x**2 - 1))
     assert verify_solution(explicit_ode, general_solution.rhs, x, y) is True
+
+
+def test_solve_ode_solves_exact_only_equation():
+    m, n = 2 * x + y(x) ** 2, 2 * x * y(x)
+    ode = Eq(m + n * y(x).diff(x), 0)
+    general_solution = solve_ode(ode, x, y)
+    explicit_ode = Eq(y(x).diff(x), -m / n)
+    explicit = solve(general_solution, y(x))[0]
+    assert verify_solution(explicit_ode, explicit, x, y) is True
 
 
 def test_solve_ode_solves_second_order_equation():

@@ -75,6 +75,16 @@ def test_classify_returns_empty_list_when_nothing_matches():
     assert classify(y(x) ** 2 + x, x, y) == []
 
 
+def test_classify_detects_homogeneous_and_autonomous_together():
+    types = classify(Integer(5), x, y)
+    assert set(types) == {"separable", "linear", "homogeneous", "autonomous"}
+
+
+def test_classify_detects_bernoulli_and_autonomous_together():
+    types = classify(y(x) ** 2, x, y)
+    assert set(types) == {"separable", "bernoulli", "autonomous"}
+
+
 def test_is_autonomous_true_without_explicit_x():
     assert is_autonomous(y(x) ** 2, x, y) is True
 
@@ -115,6 +125,11 @@ def test_has_zero_forcing_term_false_for_nonzero_forcing():
     assert has_zero_forcing_term(ode, x, y) is False
 
 
+def test_has_zero_forcing_term_false_for_non_polynomial_equation():
+    ode = Eq(y(x).diff(x, 2) + sin(y(x)), 0)
+    assert has_zero_forcing_term(ode, x, y) is False
+
+
 def test_has_constant_coefficients_true():
     ode = Eq(y(x).diff(x, 2) + y(x), 0)
     assert has_constant_coefficients(ode, x, y) is True
@@ -123,6 +138,16 @@ def test_has_constant_coefficients_true():
 def test_has_constant_coefficients_false_for_variable_coefficient():
     ode = Eq(y(x).diff(x, 2) + x * y(x).diff(x) + y(x), 0)
     assert has_constant_coefficients(ode, x, y) is False
+
+
+def test_has_constant_coefficients_false_for_non_polynomial_equation():
+    ode = Eq(y(x).diff(x, 2) + sin(y(x)), 0)
+    assert has_constant_coefficients(ode, x, y) is False
+
+
+def test_has_constant_coefficients_true_with_nonzero_forcing_term():
+    ode = Eq(y(x).diff(x, 2) + y(x), x)
+    assert has_constant_coefficients(ode, x, y) is True
 
 
 def test_classify_second_order_matches_multiple_types():
