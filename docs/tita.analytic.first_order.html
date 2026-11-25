@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.analytic.first_order</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.<a href="tita.analytic.html" class="white">analytic</a>.first_order</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/analytic/first_order.py">/home/superluxuan/Projects/tita-edo/src/tita/analytic/first_order.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-orthogonal_trajectories"><strong>orthogonal_trajectories</strong></a>(
+    family: Eq,
+    constant: Symbol,
+    variable: Symbol,
+    function: Function
+) -&gt; Expr</dt><dd><span class="code">Return&nbsp;f(x,&nbsp;y)&nbsp;for&nbsp;the&nbsp;ODE&nbsp;of&nbsp;the&nbsp;family&nbsp;orthogonal&nbsp;to&nbsp;the&nbsp;given&nbsp;one.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+family&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;family&nbsp;of&nbsp;curves,&nbsp;as&nbsp;`family(x,&nbsp;y,&nbsp;constant)&nbsp;=&nbsp;0`.<br>
+constant&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;parameter&nbsp;distinguishing&nbsp;curves&nbsp;within&nbsp;the&nbsp;family.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`f(x,&nbsp;y)`,&nbsp;the&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y)&nbsp;satisfied&nbsp;by<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;orthogonal&nbsp;family.</span></dd></dl>
+ <dl><dt><a name="-solve_bernoulli"><strong>solve_bernoulli</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;a&nbsp;Bernoulli&nbsp;first-order&nbsp;ODE&nbsp;dy/dx&nbsp;=&nbsp;-p(x)&nbsp;*&nbsp;y&nbsp;+&nbsp;q(x)&nbsp;*&nbsp;y**n.<br>
+&nbsp;<br>
+Uses&nbsp;the&nbsp;substitution&nbsp;v&nbsp;=&nbsp;y**(1&nbsp;-&nbsp;n),&nbsp;which&nbsp;turns&nbsp;the&nbsp;equation<br>
+into&nbsp;a&nbsp;linear&nbsp;ODE&nbsp;in&nbsp;v,&nbsp;delegating&nbsp;to&nbsp;`solve_linear_first_order`.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y),&nbsp;assumed&nbsp;to&nbsp;have&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Bernoulli&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution&nbsp;`function(variable)&nbsp;=&nbsp;...`.</span></dd></dl>
+ <dl><dt><a name="-solve_by_substitution"><strong>solve_by_substitution</strong></a>(
+    f: Expr,
+    variable: Symbol,
+    function: Function,
+    substitution: Eq,
+    new_function: Function
+) -&gt; Expr</dt><dd><span class="code">Rewrite&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y)&nbsp;as&nbsp;dv/dx&nbsp;=&nbsp;g(x,&nbsp;v)&nbsp;using&nbsp;a&nbsp;given&nbsp;substitution.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;a&nbsp;new&nbsp;right-hand&nbsp;side,&nbsp;ready&nbsp;to&nbsp;be&nbsp;classified&nbsp;and<br>
+solved&nbsp;with&nbsp;another&nbsp;technique&nbsp;(e.g.&nbsp;`solve_separable`,<br>
+`solve_linear_first_order`).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+substitution&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;equation&nbsp;relating&nbsp;`new_function(variable)`&nbsp;to&nbsp;`variable`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;`function(variable)`&nbsp;(e.g.&nbsp;`Eq(v(x),&nbsp;x&nbsp;+&nbsp;y(x))`).<br>
+new_function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;new&nbsp;unknown&nbsp;function&nbsp;introduced&nbsp;by&nbsp;`substitution`.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`g(x,&nbsp;v)`,&nbsp;the&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;the&nbsp;transformed&nbsp;ODE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dv/dx&nbsp;=&nbsp;g(x,&nbsp;v).</span></dd></dl>
+ <dl><dt><a name="-solve_exact"><strong>solve_exact</strong></a>(m: Expr, n: Expr, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;an&nbsp;exact&nbsp;first-order&nbsp;ODE&nbsp;M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)&nbsp;*&nbsp;dy/dx&nbsp;=&nbsp;0.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+m&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)`,&nbsp;from&nbsp;writing&nbsp;the&nbsp;ODE&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)&nbsp;*&nbsp;dy/dx&nbsp;=&nbsp;0`.<br>
+n&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`N(x,&nbsp;y)`,&nbsp;from&nbsp;the&nbsp;same&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution,&nbsp;as&nbsp;an&nbsp;implicit&nbsp;equation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`potential(x,&nbsp;y)&nbsp;=&nbsp;C1`,&nbsp;where&nbsp;potential&nbsp;is&nbsp;the&nbsp;function&nbsp;whose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;partial&nbsp;derivatives&nbsp;are&nbsp;M&nbsp;and&nbsp;N.</span></dd></dl>
+ <dl><dt><a name="-solve_homogeneous"><strong>solve_homogeneous</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;a&nbsp;homogeneous&nbsp;first-order&nbsp;ODE&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y),&nbsp;f(tx,&nbsp;ty)&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+&nbsp;<br>
+Uses&nbsp;the&nbsp;substitution&nbsp;v&nbsp;=&nbsp;y&nbsp;/&nbsp;x,&nbsp;which&nbsp;turns&nbsp;the&nbsp;equation&nbsp;into&nbsp;a<br>
+separable&nbsp;ODE&nbsp;in&nbsp;v,&nbsp;delegating&nbsp;to&nbsp;`solve_separable`.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y),&nbsp;assumed&nbsp;homogeneous&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;degree&nbsp;0.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution,&nbsp;as&nbsp;an&nbsp;implicit&nbsp;equation&nbsp;relating<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`function(variable)`&nbsp;to&nbsp;`variable`&nbsp;and&nbsp;one&nbsp;arbitrary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;constant&nbsp;`C1`.</span></dd></dl>
+ <dl><dt><a name="-solve_linear_first_order"><strong>solve_linear_first_order</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;a&nbsp;linear&nbsp;first-order&nbsp;ODE&nbsp;dy/dx&nbsp;+&nbsp;p(x)&nbsp;*&nbsp;y&nbsp;=&nbsp;q(x).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y),&nbsp;assumed&nbsp;linear&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`function`&nbsp;(i.e.&nbsp;f(x,&nbsp;y)&nbsp;=&nbsp;-p(x)&nbsp;*&nbsp;y&nbsp;+&nbsp;q(x)).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution&nbsp;`function(variable)&nbsp;=&nbsp;...`,&nbsp;found&nbsp;via<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;integrating&nbsp;factor&nbsp;exp(integral&nbsp;of&nbsp;p(x)).</span></dd></dl>
+ <dl><dt><a name="-solve_riccati"><strong>solve_riccati</strong></a>(
+    f: Expr,
+    variable: Symbol,
+    function: Function,
+    particular_solution: Expr
+) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;a&nbsp;Riccati&nbsp;ODE&nbsp;dy/dx&nbsp;=&nbsp;q0(x)&nbsp;+&nbsp;q1(x)*y&nbsp;+&nbsp;q2(x)*y**2.<br>
+&nbsp;<br>
+Requires&nbsp;a&nbsp;known&nbsp;particular&nbsp;solution.&nbsp;Uses&nbsp;the&nbsp;substitution<br>
+y&nbsp;=&nbsp;particular_solution&nbsp;+&nbsp;1&nbsp;/&nbsp;v,&nbsp;which&nbsp;turns&nbsp;the&nbsp;equation&nbsp;into&nbsp;a<br>
+linear&nbsp;ODE&nbsp;in&nbsp;v,&nbsp;delegating&nbsp;to&nbsp;`solve_linear_first_order`.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y),&nbsp;assumed&nbsp;to&nbsp;have&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Riccati&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+particular_solution&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;known&nbsp;solution&nbsp;of&nbsp;the&nbsp;ODE&nbsp;(in&nbsp;terms&nbsp;of&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution&nbsp;`function(variable)&nbsp;=&nbsp;...`.</span></dd></dl>
+ <dl><dt><a name="-solve_separable"><strong>solve_separable</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;a&nbsp;separable&nbsp;first-order&nbsp;ODE&nbsp;dy/dx&nbsp;=&nbsp;g(x)&nbsp;*&nbsp;h(y).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y),&nbsp;assumed&nbsp;separable.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution,&nbsp;as&nbsp;an&nbsp;implicit&nbsp;equation&nbsp;relating<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`function(variable)`&nbsp;to&nbsp;`variable`&nbsp;and&nbsp;one&nbsp;arbitrary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;constant&nbsp;`C1`.</span></dd></dl>
+</td></tr></table>
+</body></html>

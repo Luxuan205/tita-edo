@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.systems</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.systems</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/systems.py">/home/superluxuan/Projects/tita-edo/src/tita/systems.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-reduce_to_system"><strong>reduce_to_system</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; tuple[list[Eq], list[Function]]</dt><dd><span class="code">Reduce&nbsp;an&nbsp;order-n&nbsp;linear&nbsp;ODE&nbsp;to&nbsp;an&nbsp;equivalent&nbsp;first-order&nbsp;system.<br>
+&nbsp;<br>
+Introduces&nbsp;state&nbsp;functions&nbsp;x1&nbsp;=&nbsp;function,&nbsp;x2&nbsp;=&nbsp;function',&nbsp;...,<br>
+xn&nbsp;=&nbsp;function^(n-1),&nbsp;giving&nbsp;the&nbsp;companion-form&nbsp;system<br>
+x1'&nbsp;=&nbsp;x2,&nbsp;...,&nbsp;x(n-1)'&nbsp;=&nbsp;xn,&nbsp;xn'&nbsp;=&nbsp;(solved&nbsp;from&nbsp;`ode`).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form,&nbsp;assumed&nbsp;linear&nbsp;in&nbsp;`function`&nbsp;and&nbsp;its<br>
+&nbsp;&nbsp;&nbsp;&nbsp;derivatives.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+tuple&nbsp;of&nbsp;(list&nbsp;of&nbsp;sympy.Eq,&nbsp;list&nbsp;of&nbsp;sympy.Function)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;system&nbsp;of&nbsp;first-order&nbsp;equations&nbsp;`xi'(variable)&nbsp;=&nbsp;...`,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;state&nbsp;functions&nbsp;`[x1,&nbsp;...,&nbsp;xn]`&nbsp;used.</span></dd></dl>
+ <dl><dt><a name="-to_matrix_form"><strong>to_matrix_form</strong></a>(
+    system: list[Eq],
+    variable: Symbol,
+    state_functions: list[Function]
+) -&gt; tuple[Matrix, Matrix]</dt><dd><span class="code">Write&nbsp;a&nbsp;first-order&nbsp;linear&nbsp;system&nbsp;X'&nbsp;=&nbsp;A*X&nbsp;+&nbsp;b&nbsp;in&nbsp;matrix&nbsp;form.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+system&nbsp;:&nbsp;list&nbsp;of&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;system&nbsp;of&nbsp;first-order&nbsp;equations&nbsp;`xi'(variable)&nbsp;=&nbsp;...`,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;linear&nbsp;in&nbsp;`state_functions`.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+state_functions&nbsp;:&nbsp;list&nbsp;of&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;functions&nbsp;`[x1,&nbsp;...,&nbsp;xn]`&nbsp;appearing&nbsp;in&nbsp;`system`.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+tuple&nbsp;of&nbsp;(sympy.Matrix,&nbsp;sympy.Matrix)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`A`&nbsp;and&nbsp;`b`,&nbsp;such&nbsp;that&nbsp;`X'&nbsp;=&nbsp;A*X&nbsp;+&nbsp;b`&nbsp;for&nbsp;the&nbsp;state&nbsp;vector<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`X&nbsp;=&nbsp;[x1(variable),&nbsp;...,&nbsp;xn(variable)]`.</span></dd></dl>
+</td></tr></table>
+</body></html>

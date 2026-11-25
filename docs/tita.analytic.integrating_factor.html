@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.analytic.integrating_factor</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.<a href="tita.analytic.html" class="white">analytic</a>.integrating_factor</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/analytic/integrating_factor.py">/home/superluxuan/Projects/tita-edo/src/tita/analytic/integrating_factor.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-find_integrating_factor_x"><strong>find_integrating_factor_x</strong></a>(
+    m: Expr,
+    n: Expr,
+    variable: Symbol,
+    function: Function
+) -&gt; Expr</dt><dd><span class="code">Find&nbsp;an&nbsp;integrating&nbsp;factor&nbsp;mu(x)&nbsp;that&nbsp;makes&nbsp;M&nbsp;+&nbsp;N*dy/dx&nbsp;=&nbsp;0&nbsp;exact.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+m&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)`,&nbsp;from&nbsp;writing&nbsp;the&nbsp;ODE&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)&nbsp;*&nbsp;dy/dx&nbsp;=&nbsp;0`.<br>
+n&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`N(x,&nbsp;y)`,&nbsp;from&nbsp;the&nbsp;same&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`mu(x)`,&nbsp;such&nbsp;that&nbsp;`mu(x)*M&nbsp;+&nbsp;mu(x)*N*dy/dx&nbsp;=&nbsp;0`&nbsp;is&nbsp;exact.</span></dd></dl>
+ <dl><dt><a name="-find_integrating_factor_y"><strong>find_integrating_factor_y</strong></a>(
+    m: Expr,
+    n: Expr,
+    variable: Symbol,
+    function: Function
+) -&gt; Expr</dt><dd><span class="code">Find&nbsp;an&nbsp;integrating&nbsp;factor&nbsp;mu(y)&nbsp;that&nbsp;makes&nbsp;M&nbsp;+&nbsp;N*dy/dx&nbsp;=&nbsp;0&nbsp;exact.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+m&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)`,&nbsp;from&nbsp;writing&nbsp;the&nbsp;ODE&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)&nbsp;*&nbsp;dy/dx&nbsp;=&nbsp;0`.<br>
+n&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`N(x,&nbsp;y)`,&nbsp;from&nbsp;the&nbsp;same&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`mu(y)`,&nbsp;as&nbsp;a&nbsp;function&nbsp;of&nbsp;`function(variable)`,&nbsp;such&nbsp;that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`mu(y)*M&nbsp;+&nbsp;mu(y)*N*dy/dx&nbsp;=&nbsp;0`&nbsp;is&nbsp;exact.</span></dd></dl>
+ <dl><dt><a name="-solve_with_integrating_factor"><strong>solve_with_integrating_factor</strong></a>(
+    m: Expr,
+    n: Expr,
+    variable: Symbol,
+    function: Function
+) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)*dy/dx&nbsp;=&nbsp;0&nbsp;by&nbsp;finding&nbsp;an&nbsp;integrating&nbsp;factor.<br>
+&nbsp;<br>
+Tries&nbsp;an&nbsp;integrating&nbsp;factor&nbsp;of&nbsp;the&nbsp;form&nbsp;mu(x)&nbsp;first,&nbsp;then&nbsp;mu(y),<br>
+then&nbsp;delegates&nbsp;to&nbsp;`solve_exact`&nbsp;on&nbsp;the&nbsp;resulting&nbsp;exact&nbsp;equation.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+m&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)`,&nbsp;from&nbsp;writing&nbsp;the&nbsp;ODE&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)&nbsp;*&nbsp;dy/dx&nbsp;=&nbsp;0`.<br>
+n&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`N(x,&nbsp;y)`,&nbsp;from&nbsp;the&nbsp;same&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution,&nbsp;as&nbsp;an&nbsp;implicit&nbsp;equation.</span></dd></dl>
+</td></tr></table>
+</body></html>

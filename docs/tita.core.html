@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.core</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.core</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/core.py">/home/superluxuan/Projects/tita-edo/src/tita/core.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-classify_ode"><strong>classify_ode</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; list[str]</dt><dd><span class="code">Classify&nbsp;a&nbsp;first-&nbsp;or&nbsp;second-order&nbsp;ODE&nbsp;by&nbsp;its&nbsp;type(s).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(the&nbsp;derivative&nbsp;term(s)&nbsp;can&nbsp;be&nbsp;on&nbsp;either<br>
+&nbsp;&nbsp;&nbsp;&nbsp;side,&nbsp;mixed&nbsp;with&nbsp;other&nbsp;terms,&nbsp;etc).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list&nbsp;of&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;matching&nbsp;ODE&nbsp;type&nbsp;names:&nbsp;for&nbsp;order&nbsp;1,&nbsp;see<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`classifier.classify`&nbsp;and&nbsp;`classifier.is_exact`;&nbsp;for&nbsp;order&nbsp;2,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;see&nbsp;`classifier.classify_second_order`.</span></dd></dl>
+ <dl><dt><a name="-solve_ode"><strong>solve_ode</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Classify&nbsp;a&nbsp;first-&nbsp;or&nbsp;second-order&nbsp;ODE&nbsp;and&nbsp;solve&nbsp;it.<br>
+&nbsp;<br>
+For&nbsp;order&nbsp;1,&nbsp;picks&nbsp;one&nbsp;applicable&nbsp;method&nbsp;by&nbsp;priority&nbsp;(linear,<br>
+bernoulli,&nbsp;homogeneous,&nbsp;separable,&nbsp;exact)&nbsp;when&nbsp;more&nbsp;than&nbsp;one&nbsp;type<br>
+matches.&nbsp;For&nbsp;order&nbsp;2,&nbsp;only&nbsp;constant-coefficient&nbsp;homogeneous<br>
+equations&nbsp;are&nbsp;solvable&nbsp;so&nbsp;far.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(the&nbsp;derivative&nbsp;term(s)&nbsp;can&nbsp;be&nbsp;on&nbsp;either<br>
+&nbsp;&nbsp;&nbsp;&nbsp;side,&nbsp;mixed&nbsp;with&nbsp;other&nbsp;terms,&nbsp;etc).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution&nbsp;found.</span></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.classifier</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.classifier</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/classifier.py">/home/superluxuan/Projects/tita-edo/src/tita/classifier.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-classify"><strong>classify</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; list[str]</dt><dd><span class="code">Return&nbsp;the&nbsp;names&nbsp;of&nbsp;every&nbsp;first-order&nbsp;ODE&nbsp;type&nbsp;that&nbsp;f(x,&nbsp;y)&nbsp;matches.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list&nbsp;of&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;matching&nbsp;type&nbsp;names,&nbsp;among&nbsp;"separable",&nbsp;"linear",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"homogeneous",&nbsp;"bernoulli"&nbsp;and&nbsp;"autonomous".&nbsp;Can&nbsp;be&nbsp;more&nbsp;than<br>
+&nbsp;&nbsp;&nbsp;&nbsp;one,&nbsp;or&nbsp;empty.</span></dd></dl>
+ <dl><dt><a name="-classify_problem_type"><strong>classify_problem_type</strong></a>(conditions: list[tuple[int, float, float]]) -&gt; str</dt><dd><span class="code">Classify&nbsp;a&nbsp;set&nbsp;of&nbsp;conditions&nbsp;as&nbsp;an&nbsp;initial-value&nbsp;or&nbsp;boundary-value&nbsp;problem.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+conditions&nbsp;:&nbsp;list&nbsp;of&nbsp;tuple&nbsp;of&nbsp;(int,&nbsp;float,&nbsp;float)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;tuple&nbsp;is&nbsp;`(order,&nbsp;point,&nbsp;value)`.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`"ivp"`&nbsp;if&nbsp;every&nbsp;condition&nbsp;is&nbsp;given&nbsp;at&nbsp;the&nbsp;same&nbsp;point,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`"bvp"`&nbsp;otherwise.</span></dd></dl>
+ <dl><dt><a name="-classify_second_order"><strong>classify_second_order</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; list[str]</dt><dd><span class="code">Return&nbsp;the&nbsp;names&nbsp;of&nbsp;every&nbsp;second-order&nbsp;linear&nbsp;ODE&nbsp;type&nbsp;that&nbsp;ode&nbsp;matches.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;second-order&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list&nbsp;of&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;matching&nbsp;type&nbsp;names,&nbsp;among&nbsp;"linear",&nbsp;"constant_coefficients"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;"zero_forcing_term".&nbsp;Can&nbsp;be&nbsp;more&nbsp;than&nbsp;one,&nbsp;or&nbsp;empty.</span></dd></dl>
+ <dl><dt><a name="-has_constant_coefficients"><strong>has_constant_coefficients</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;ode's&nbsp;coefficients&nbsp;of&nbsp;function&nbsp;and&nbsp;its&nbsp;derivatives&nbsp;are&nbsp;constant.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(any&nbsp;order).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;none&nbsp;of&nbsp;the&nbsp;coefficients&nbsp;of&nbsp;`function`&nbsp;or&nbsp;its<br>
+&nbsp;&nbsp;&nbsp;&nbsp;derivatives&nbsp;depend&nbsp;on&nbsp;`variable`&nbsp;(the&nbsp;forcing&nbsp;term,&nbsp;if&nbsp;any,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;may&nbsp;still&nbsp;depend&nbsp;on&nbsp;`variable`).</span></dd></dl>
+ <dl><dt><a name="-has_zero_forcing_term"><strong>has_zero_forcing_term</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;ode&nbsp;has&nbsp;a&nbsp;zero&nbsp;forcing&nbsp;term&nbsp;(is&nbsp;homogeneous).<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;"homogénea/no&nbsp;homogénea"&nbsp;sense&nbsp;from&nbsp;the&nbsp;course's&nbsp;Núcleo<br>
+branch:&nbsp;a&nbsp;linear&nbsp;ODE&nbsp;a_n(x)*y^(n)&nbsp;+&nbsp;...&nbsp;+&nbsp;a_0(x)*y&nbsp;=&nbsp;g(x)&nbsp;is<br>
+homogeneous&nbsp;when&nbsp;g(x)&nbsp;=&nbsp;0.&nbsp;This&nbsp;is&nbsp;unrelated&nbsp;to&nbsp;`is_homogeneous`,<br>
+which&nbsp;checks&nbsp;a&nbsp;different,&nbsp;first-order-specific&nbsp;notion&nbsp;(whether<br>
+f(x,&nbsp;y)&nbsp;depends&nbsp;only&nbsp;on&nbsp;the&nbsp;ratio&nbsp;y/x).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(any&nbsp;order).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;the&nbsp;part&nbsp;of&nbsp;ode&nbsp;not&nbsp;involving&nbsp;`function`&nbsp;or&nbsp;its<br>
+&nbsp;&nbsp;&nbsp;&nbsp;derivatives&nbsp;is&nbsp;zero.</span></dd></dl>
+ <dl><dt><a name="-is_autonomous"><strong>is_autonomous</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;f(x,&nbsp;y)&nbsp;does&nbsp;not&nbsp;depend&nbsp;explicitly&nbsp;on&nbsp;x.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;f(x,&nbsp;y)&nbsp;depends&nbsp;only&nbsp;on&nbsp;`function`,&nbsp;not&nbsp;on&nbsp;`variable`.</span></dd></dl>
+ <dl><dt><a name="-is_bernoulli"><strong>is_bernoulli</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;f(x,&nbsp;y)&nbsp;has&nbsp;the&nbsp;form&nbsp;p(x)&nbsp;*&nbsp;y&nbsp;+&nbsp;q(x)&nbsp;*&nbsp;y**n.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;f(x,&nbsp;y),&nbsp;as&nbsp;a&nbsp;polynomial&nbsp;in&nbsp;`function`,&nbsp;has&nbsp;at&nbsp;most<br>
+&nbsp;&nbsp;&nbsp;&nbsp;two&nbsp;nonzero&nbsp;terms:&nbsp;one&nbsp;of&nbsp;exponent&nbsp;1&nbsp;and&nbsp;one&nbsp;of&nbsp;some&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;exponent&nbsp;n&nbsp;(n&nbsp;!=&nbsp;0,&nbsp;n&nbsp;!=&nbsp;1).</span></dd></dl>
+ <dl><dt><a name="-is_exact"><strong>is_exact</strong></a>(m: Expr, n: Expr, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)&nbsp;*&nbsp;dy/dx&nbsp;=&nbsp;0&nbsp;is&nbsp;exact.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+m&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)`,&nbsp;from&nbsp;writing&nbsp;the&nbsp;ODE&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`M(x,&nbsp;y)&nbsp;+&nbsp;N(x,&nbsp;y)&nbsp;*&nbsp;dy/dx&nbsp;=&nbsp;0`.<br>
+n&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`N(x,&nbsp;y)`,&nbsp;from&nbsp;the&nbsp;same&nbsp;form.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;d(M)/dy&nbsp;equals&nbsp;d(N)/dx.</span></dd></dl>
+ <dl><dt><a name="-is_homogeneous"><strong>is_homogeneous</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;f(x,&nbsp;y)&nbsp;is&nbsp;homogeneous&nbsp;of&nbsp;degree&nbsp;0.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;f(t*x,&nbsp;t*y)&nbsp;==&nbsp;f(x,&nbsp;y)&nbsp;for&nbsp;a&nbsp;scaling&nbsp;factor&nbsp;`t`,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;i.e.&nbsp;f(x,&nbsp;y)&nbsp;depends&nbsp;only&nbsp;on&nbsp;the&nbsp;ratio&nbsp;y/x.</span></dd></dl>
+ <dl><dt><a name="-is_linear"><strong>is_linear</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;f(x,&nbsp;y)&nbsp;has&nbsp;the&nbsp;form&nbsp;-p(x)&nbsp;*&nbsp;y&nbsp;+&nbsp;q(x).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;f(x,&nbsp;y)&nbsp;is&nbsp;a&nbsp;degree-1&nbsp;(or&nbsp;lower)&nbsp;polynomial&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`function`,&nbsp;with&nbsp;coefficients&nbsp;that&nbsp;may&nbsp;depend&nbsp;on&nbsp;`variable`.</span></dd></dl>
+ <dl><dt><a name="-is_linear_general"><strong>is_linear_general</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;ode&nbsp;is&nbsp;linear&nbsp;in&nbsp;function&nbsp;and&nbsp;its&nbsp;derivatives.<br>
+&nbsp;<br>
+Unlike&nbsp;`is_linear`&nbsp;(which&nbsp;checks&nbsp;f(x,&nbsp;y)&nbsp;for&nbsp;a&nbsp;first-order&nbsp;ODE<br>
+already&nbsp;in&nbsp;explicit&nbsp;form),&nbsp;this&nbsp;works&nbsp;directly&nbsp;on&nbsp;`ode`&nbsp;and&nbsp;on&nbsp;any<br>
+order:&nbsp;it&nbsp;is&nbsp;linear&nbsp;if&nbsp;it&nbsp;is&nbsp;affine&nbsp;in&nbsp;the&nbsp;unknown&nbsp;function&nbsp;and<br>
+every&nbsp;one&nbsp;of&nbsp;its&nbsp;derivatives,&nbsp;with&nbsp;no&nbsp;products&nbsp;between&nbsp;them&nbsp;and&nbsp;no<br>
+nonlinear&nbsp;functions&nbsp;applied&nbsp;to&nbsp;them.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(any&nbsp;order).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;ode&nbsp;is&nbsp;linear&nbsp;in&nbsp;`function`&nbsp;and&nbsp;its&nbsp;derivatives.</span></dd></dl>
+ <dl><dt><a name="-is_ordinary"><strong>is_ordinary</strong></a>(ode: Eq) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;ode&nbsp;is&nbsp;an&nbsp;ODE&nbsp;(a&nbsp;single&nbsp;independent&nbsp;variable).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;differential&nbsp;equation&nbsp;to&nbsp;check.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;every&nbsp;derivative&nbsp;in&nbsp;`ode`&nbsp;is&nbsp;taken&nbsp;with&nbsp;respect&nbsp;to&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;same&nbsp;single&nbsp;variable&nbsp;(i.e.&nbsp;`ode`&nbsp;is&nbsp;not&nbsp;a&nbsp;PDE).</span></dd></dl>
+ <dl><dt><a name="-is_separable"><strong>is_separable</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;f(x,&nbsp;y)&nbsp;can&nbsp;be&nbsp;written&nbsp;as&nbsp;g(x)&nbsp;*&nbsp;h(y).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;f(x,&nbsp;y)&nbsp;separates&nbsp;into&nbsp;a&nbsp;product&nbsp;of&nbsp;a&nbsp;function&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`variable`&nbsp;alone&nbsp;and&nbsp;a&nbsp;function&nbsp;of&nbsp;`function`&nbsp;alone.</span></dd></dl>
+ <dl><dt><a name="-solution_kind"><strong>solution_kind</strong></a>(
+    general_solution: Expr,
+    constants: list[Symbol],
+    candidate: Expr,
+    variable: Symbol
+) -&gt; str</dt><dd><span class="code">Classify&nbsp;a&nbsp;candidate&nbsp;solution&nbsp;as&nbsp;general,&nbsp;particular&nbsp;or&nbsp;singular.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+general_solution&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution&nbsp;of&nbsp;the&nbsp;ODE,&nbsp;containing&nbsp;`constants`.<br>
+constants&nbsp;:&nbsp;list&nbsp;of&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;arbitrary&nbsp;constants&nbsp;appearing&nbsp;in&nbsp;`general_solution`.<br>
+candidate&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;proposed&nbsp;solution&nbsp;to&nbsp;classify&nbsp;against&nbsp;`general_solution`.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`"general"`&nbsp;if&nbsp;`candidate`&nbsp;still&nbsp;contains&nbsp;any&nbsp;of&nbsp;`constants`,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`"particular"`&nbsp;if&nbsp;it&nbsp;can&nbsp;be&nbsp;obtained&nbsp;from&nbsp;`general_solution`&nbsp;by<br>
+&nbsp;&nbsp;&nbsp;&nbsp;choosing&nbsp;specific&nbsp;constant&nbsp;values,&nbsp;`"singular"`&nbsp;otherwise.</span></dd></dl>
+ <dl><dt><a name="-verify_solution"><strong>verify_solution</strong></a>(ode: Eq, candidate: Expr, variable: Symbol, function: Function) -&gt; bool</dt><dd><span class="code">Check&nbsp;whether&nbsp;candidate&nbsp;satisfies&nbsp;ode.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(any&nbsp;order).<br>
+candidate&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;proposed&nbsp;expression&nbsp;for&nbsp;the&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;what<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`function(variable)`&nbsp;would&nbsp;equal).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;`candidate`&nbsp;satisfies&nbsp;`ode`&nbsp;identically.</span></dd></dl>
+</td></tr></table>
+</body></html>
