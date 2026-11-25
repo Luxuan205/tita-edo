@@ -1,0 +1,27 @@
+class ODEError(Exception):
+    """Base exception class in the library"""
+
+
+class MethodNotApplicableError(ODEError):
+    """Raised when an solving method is wrongly applied"""
+
+    def __init__(self, message, method, reason):
+        super().__init__(message)
+        self.method = method
+        self.reason = reason
+
+
+class SingularityError(ODEError):
+    """Raised when a singularity is found"""
+
+    def __init__(self, message, point):
+        super().__init__(message)
+        self.point = point
+
+
+class InvalidInputError(ODEError):
+    """Raises when a input parameter is invalid."""
+
+    def __init__(self, message, param=None):
+        super().__init__(message)
+        self.param = param

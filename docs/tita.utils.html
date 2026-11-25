@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.utils</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.utils</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/utils.py">/home/superluxuan/Projects/tita-edo/src/tita/utils.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-linear_form"><strong>linear_form</strong></a>(ode: Eq, variable: Symbol, function: Function)</dt><dd><span class="code">Rewrite&nbsp;an&nbsp;ODE&nbsp;as&nbsp;a&nbsp;polynomial&nbsp;in&nbsp;function&nbsp;and&nbsp;its&nbsp;derivatives.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(any&nbsp;order).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+tuple&nbsp;of&nbsp;(sympy.Poly&nbsp;or&nbsp;None,&nbsp;tuple&nbsp;of&nbsp;sympy.Symbol)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;polynomial&nbsp;representation&nbsp;of&nbsp;`ode.lhs&nbsp;-&nbsp;ode.rhs`&nbsp;(or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`None`&nbsp;if&nbsp;that&nbsp;expression&nbsp;is&nbsp;not&nbsp;polynomial&nbsp;in&nbsp;the&nbsp;unknown<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;and&nbsp;its&nbsp;derivatives),&nbsp;and&nbsp;the&nbsp;plain&nbsp;dummy&nbsp;symbols<br>
+&nbsp;&nbsp;&nbsp;&nbsp;used&nbsp;for&nbsp;the&nbsp;function&nbsp;and&nbsp;each&nbsp;of&nbsp;its&nbsp;derivatives,&nbsp;in&nbsp;order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(the&nbsp;dummy&nbsp;for&nbsp;the&nbsp;function&nbsp;itself&nbsp;first).</span></dd></dl>
+ <dl><dt><a name="-solve_integration_constants"><strong>solve_integration_constants</strong></a>(
+    general_solution: Expr,
+    constants: list[Symbol],
+    variable: Symbol,
+    initial_conditions: list[tuple[int, float, float]]
+) -&gt; Expr</dt><dd><span class="code">Solve&nbsp;for&nbsp;the&nbsp;arbitrary&nbsp;constants&nbsp;of&nbsp;a&nbsp;general&nbsp;ODE&nbsp;solution.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+general_solution&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution&nbsp;of&nbsp;the&nbsp;ODE,&nbsp;containing&nbsp;the&nbsp;arbitrary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;constants&nbsp;to&nbsp;solve&nbsp;for.<br>
+constants&nbsp;:&nbsp;list&nbsp;of&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;arbitrary&nbsp;constants&nbsp;appearing&nbsp;in&nbsp;`general_solution`.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;of&nbsp;the&nbsp;ODE.<br>
+initial_conditions&nbsp;:&nbsp;list&nbsp;of&nbsp;tuple&nbsp;of&nbsp;(int,&nbsp;float,&nbsp;float)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;tuple&nbsp;is&nbsp;`(order,&nbsp;point,&nbsp;value)`,&nbsp;meaning&nbsp;the&nbsp;`order`-th<br>
+&nbsp;&nbsp;&nbsp;&nbsp;derivative&nbsp;of&nbsp;the&nbsp;solution&nbsp;evaluated&nbsp;at&nbsp;`point`&nbsp;equals&nbsp;`value`.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;particular&nbsp;solution,&nbsp;with&nbsp;constants&nbsp;replaced&nbsp;by&nbsp;their<br>
+&nbsp;&nbsp;&nbsp;&nbsp;solved&nbsp;values.</span></dd></dl>
+ <dl><dt><a name="-substitute_function"><strong>substitute_function</strong></a>(f: Expr, variable: Symbol, function: Function) -&gt; tuple[Expr, Symbol]</dt><dd><span class="code">Replace&nbsp;function(variable)&nbsp;in&nbsp;f&nbsp;with&nbsp;a&nbsp;plain&nbsp;symbol.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;expression&nbsp;containing&nbsp;`function(variable)`&nbsp;(e.g.&nbsp;`y(x)`).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+tuple&nbsp;of&nbsp;(sympy.Expr,&nbsp;sympy.Symbol)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;expression&nbsp;with&nbsp;`function(variable)`&nbsp;replaced,&nbsp;and&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;plain&nbsp;symbol&nbsp;used&nbsp;for&nbsp;the&nbsp;replacement.</span></dd></dl>
+</td></tr></table>
+</body></html>

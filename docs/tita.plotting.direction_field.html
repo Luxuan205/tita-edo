@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.plotting.direction_field</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.<a href="tita.plotting.html" class="white">plotting</a>.direction_field</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/plotting/direction_field.py">/home/superluxuan/Projects/tita-edo/src/tita/plotting/direction_field.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+</td><td class="multicolumn"><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-plot_direction_field"><strong>plot_direction_field</strong></a>(
+    f: Expr,
+    variable: Symbol,
+    function: Function,
+    x_range: tuple[float, float],
+    y_range: tuple[float, float],
+    density: int = 20,
+    ax: Axes = None
+) -&gt; Figure</dt><dd><span class="code">Plot&nbsp;the&nbsp;direction&nbsp;field&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+f&nbsp;:&nbsp;sympy.Expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;right-hand&nbsp;side&nbsp;of&nbsp;dy/dx&nbsp;=&nbsp;f(x,&nbsp;y).<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+x_range&nbsp;:&nbsp;tuple&nbsp;of&nbsp;(float,&nbsp;float)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;(min,&nbsp;max)&nbsp;range&nbsp;to&nbsp;plot&nbsp;along&nbsp;`variable`.<br>
+y_range&nbsp;:&nbsp;tuple&nbsp;of&nbsp;(float,&nbsp;float)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;(min,&nbsp;max)&nbsp;range&nbsp;to&nbsp;plot&nbsp;along&nbsp;`function`.<br>
+density&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;grid&nbsp;points&nbsp;along&nbsp;each&nbsp;axis.<br>
+ax&nbsp;:&nbsp;matplotlib.axes.Axes,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Axes&nbsp;to&nbsp;draw&nbsp;on.&nbsp;A&nbsp;new&nbsp;figure&nbsp;and&nbsp;axes&nbsp;are&nbsp;created&nbsp;if&nbsp;omitted.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+matplotlib.figure.Figure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;figure&nbsp;containing&nbsp;the&nbsp;plotted&nbsp;direction&nbsp;field.</span></dd></dl>
+</td></tr></table>
+</body></html>

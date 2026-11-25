@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="pydoc.css">
+<title>Python: module tita.analytic.second_order</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="tita.html" class="white">tita</a>.<a href="tita.analytic.html" class="white">analytic</a>.second_order</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/superluxuan/Projects/tita-edo/src/tita/analytic/second_order.py">/home/superluxuan/Projects/tita-edo/src/tita/analytic/second_order.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-characteristic_equation"><strong>characteristic_equation</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Build&nbsp;the&nbsp;characteristic&nbsp;equation&nbsp;of&nbsp;a&nbsp;constant-coefficient&nbsp;linear&nbsp;ODE.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form&nbsp;(any&nbsp;order),&nbsp;assumed&nbsp;linear&nbsp;with&nbsp;constant<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coefficients.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;characteristic&nbsp;equation&nbsp;`a_n*r**n&nbsp;+&nbsp;...&nbsp;+&nbsp;a_0&nbsp;=&nbsp;0`,&nbsp;where<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`r`&nbsp;stands&nbsp;in&nbsp;for&nbsp;each&nbsp;derivative's&nbsp;exponential&nbsp;rate.</span></dd></dl>
+ <dl><dt><a name="-solve_constant_coeff_homogeneous"><strong>solve_constant_coeff_homogeneous</strong></a>(ode: Eq, variable: Symbol, function: Function) -&gt; Eq</dt><dd><span class="code">Solve&nbsp;a_n*y^(n)&nbsp;+&nbsp;...&nbsp;+&nbsp;a_0*y&nbsp;=&nbsp;0&nbsp;with&nbsp;constant&nbsp;coefficients.<br>
+&nbsp;<br>
+Builds&nbsp;the&nbsp;characteristic&nbsp;equation&nbsp;and&nbsp;combines&nbsp;its&nbsp;roots&nbsp;into&nbsp;the<br>
+general&nbsp;solution:&nbsp;`C&nbsp;*&nbsp;exp(r*x)`&nbsp;per&nbsp;real&nbsp;root&nbsp;(times&nbsp;`x**k`&nbsp;for<br>
+repeated&nbsp;roots),&nbsp;and&nbsp;`exp(a*x)&nbsp;*&nbsp;(C1*cos(b*x)&nbsp;+&nbsp;C2*sin(b*x))`&nbsp;per<br>
+complex&nbsp;conjugate&nbsp;pair&nbsp;`a&nbsp;+-&nbsp;b*i`.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+ode&nbsp;:&nbsp;sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ODE,&nbsp;in&nbsp;any&nbsp;form,&nbsp;assumed&nbsp;linear,&nbsp;homogeneous&nbsp;(zero<br>
+&nbsp;&nbsp;&nbsp;&nbsp;forcing&nbsp;term)&nbsp;and&nbsp;with&nbsp;constant&nbsp;coefficients.<br>
+variable&nbsp;:&nbsp;sympy.Symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;independent&nbsp;variable&nbsp;(e.g.&nbsp;`x`).<br>
+function&nbsp;:&nbsp;sympy.Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unknown&nbsp;function&nbsp;(e.g.&nbsp;`Function("y")`,&nbsp;not&nbsp;yet&nbsp;applied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;`variable`).<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sympy.Eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;general&nbsp;solution&nbsp;`function(variable)&nbsp;=&nbsp;...`.</span></dd></dl>
+</td></tr></table>
+</body></html>
